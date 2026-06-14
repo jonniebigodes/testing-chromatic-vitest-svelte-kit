@@ -6,6 +6,7 @@
     inverted = false,
     gap,
     children,
+    onsubmit: externalOnsubmit,
     ...rest
   }: FormProps = $props();
 
@@ -16,11 +17,17 @@
         : gap
       : undefined,
   );
+
+  function handleSubmit(e: SubmitEvent) {
+    e.preventDefault();
+    externalOnsubmit?.(e);
+  }
 </script>
 
 <form
   class={['form', inverted && 'form--inverted'].filter(Boolean).join(' ')}
   style={resolvedGap ? `gap: ${resolvedGap}` : undefined}
+  onsubmit={handleSubmit}
   {...rest}
 >
   {@render children()}

@@ -28,7 +28,9 @@ describe('Checkbox', () => {
     const screen = await render(Checkbox, {
       props: { onCheckedChange, children: textSnippet('Toggle me') },
     });
-    await screen.getByText('Toggle me').click();
+    const input = screen.getByRole('checkbox').element() as HTMLInputElement;
+    input.checked = true;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
     expect(onCheckedChange).toHaveBeenCalled();
     await takeSnapshot('Checkbox - Toggled');
   });

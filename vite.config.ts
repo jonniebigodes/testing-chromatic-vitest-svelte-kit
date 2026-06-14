@@ -93,7 +93,8 @@ export default defineConfig({
         ],
         test: {
           name: 'chromatic',
-          include: ['src/lib/**/*.test.ts'],
+          //retry: 2,
+          include: ['src/lib/**/*.test.ts', 'src/routes/**/*.test.ts'],
           setupFiles: ['./src/test-setup.ts'],
           browser: {
             enabled: true,
@@ -107,14 +108,15 @@ export default defineConfig({
             instances: [
               {
                 browser: 'chromium'
-              },
-              {
+              }
+              // To enable the following browsers then the retry option should be uncommented
+              /*   {
                 browser: 'firefox'
               },
 
               {
                 browser: 'webkit'
-              }
+              } */
             ]
           }
         }

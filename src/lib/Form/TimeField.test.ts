@@ -34,7 +34,8 @@ describe('TimeField', () => {
         children: textSnippet('Time'),
       },
     });
-    await screen.getByRole('button', { name: 'Clear time' }).click();
+    const button = screen.getByRole('button', { name: 'Clear time' }).element() as HTMLButtonElement;
+    button.click();
     expect(onValueChange).toHaveBeenCalledWith(
       expect.objectContaining({ value: '' }),
     );

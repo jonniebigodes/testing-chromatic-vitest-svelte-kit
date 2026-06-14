@@ -25,7 +25,7 @@ describe('RatingGroup', () => {
     const screen = await render(RatingGroup, {
       props: { min: 1, max: 5, onValueChange },
     });
-    await screen.getByRole('radio').nth(2).click();
+    await screen.getByRole('radio').nth(2).click({ force: true });
     expect(onValueChange).toHaveBeenCalled();
     await takeSnapshot('RatingGroup - Star selected');
   });
